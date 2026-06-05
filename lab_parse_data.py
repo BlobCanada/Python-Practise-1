@@ -16,8 +16,7 @@ def clean_and_split_record(record_str):
     # Returns: A list of substrings.
     # code here
     white = record_str.strip()
-    output = list(white.split('_'))
-    return(output[1])
+    return(list(white.split('_')))
 
 def get_masked_id(record_str):
     # This function should clean the record string (remove spaces) and return 
