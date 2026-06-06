@@ -15,6 +15,11 @@ def clean_inventory(inventory):
     # and return a NEW dictionary where all hostnames are strictly lowercase.
     # The values (IPs) should stay exactly the same.
     # code here
+    output = {}
+    for host, ip in inventory.items():
+        output[host.lower()] = ip   
+   
+    return output
 
 def audit_subnet(inventory, subnet_prefix):
     # This function filters the inventory based on an IP prefix.
@@ -23,6 +28,12 @@ def audit_subnet(inventory, subnet_prefix):
     # add its hostname to a set.
     # Returns: A set of hostnames that match the subnet.
     # code here
+    host = {}
+    for system in inventory:
+        if inventory.values() == subnet_prefix:
+            host.add(inventory.keys())
+    return host
+
 
 def find_malformed_switches(inventory):
     # This function finds hostnames that don't match our standards.
@@ -30,6 +41,12 @@ def find_malformed_switches(inventory):
     # Behavior: Compare the keys of the original raw inventory against a filtered list.
     # Returns: A list of hostnames from the original inventory keys that are either uppercase OR do not contain '-sw-'.
     # code here
+    hosts = []
+    for system in inventory:
+        device = system.split('-')
+        if device[1] != 'sw':
+            hosts.append(system)
+    return hosts
 
 if __name__ == '__main__':
     # 1. Clean the inventory tags
