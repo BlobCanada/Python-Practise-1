@@ -7,13 +7,11 @@ def get_prod_servers(servers):
     # This function should loop through the servers list and return a NEW list 
     # containing ONLY servers that have 'prod' in their hostname.
     # code here
-    prod_list =  []
-    list_position = 0
-    while list_position < len(servers):
-        temp = [servers[list_position].split('-')]
-        if temp[1] is 'prod':
-            prod_list.append(servers[list_position])
-        list_position += 1
+    prod =  []
+    for server in servers:
+        if '-prod-' in server:
+            prod.append(server)
+    return(prod)
 
 
 def count_vgh_servers(servers):
@@ -21,6 +19,13 @@ def count_vgh_servers(servers):
     # hostnames start with 'vgh-'.
     # Returns: An integer representing the count.
     # code here
+    prod_list =  []
+    count = 0
+    for server in servers:
+        if 'vgh-' in server:
+            count += 1
+    return(count)
+
 
 if __name__ == '__main__':
     print('Production Servers:', get_prod_servers(server_list))
